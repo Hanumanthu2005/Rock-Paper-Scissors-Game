@@ -1,7 +1,7 @@
 import Playbutton from "./playButton";
 import '../css/Home.css'
 import Result from "./result";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GameMoves from "./gameMoves";
 import ScoreCard from "./scoreCard";
 
@@ -9,7 +9,19 @@ import ScoreCard from "./scoreCard";
 function Home() {
   const [gameResult, setGameResult] = useState(null);
   const [gameMoves, setGameMoves] = useState({player : null, computer : null});
-  const [score, setScore] = useState({wins : 0, lose : 0, tie : 0});
+  const [score, setScore] = useState(() => {
+    const savedScore = localStorage.getItem('score');
+    return (savedScore) ? JSON.parse(savedScore) : {wins : 0, lose : 0, tie : 0};
+  });
+
+  useEffect(() => {
+    localStorage.setItem('score', JSON.stringify(score));
+  }, [score]);
+
+
+  const resetScore = () => {
+    setScore({wins : 0, lose : 0, tie : 0});
+  }
 
   const updateScore = (res) => {
     setScore((prevScore) => {
@@ -59,7 +71,7 @@ function Home() {
           <GameMoves gameMoves={gameMoves}/>
         </div>
         <div className="score-card">
-          <ScoreCard score={score} />
+          <ScoreCard resetScore={resetScore} score={score} />
         </div>
 
       </div>

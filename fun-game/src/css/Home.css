@@ -1,24 +1,83 @@
-.play-btns {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* Home.css */
 
-.title {
-  font-size: 30px;
-}
-
-/* .game-moves {
-  height: 10px;
-} */
-
-body {
-  padding-top: 50px;
-  background-color: rgb(25, 25, 25);
-  color: white;
-  font-family: arial;
+/* Overall page background */
+.main {
+  min-height: 100vh;
+  background: #0d0d0d; /* dark background */
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  justify-content: flex-start;
+  padding: 40px 20px;
+  font-family: 'Orbitron', sans-serif; /* futuristic font */
+  color: #0ff;
+  overflow-x: hidden;
+}
+
+/* Title */
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+  animation: titleGlow 2s infinite alternate;
+}
+
+/* Play buttons container */
+.play-btns {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+/* Result text */
+.result {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff, 0 0 15px #0ff, 0 0 25px #0ff;
+  animation: resultPulse 1.5s infinite alternate;
+}
+
+/* Game moves container */
+.game-moves {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+/* Optional: glowing card container for ScoreCard */
+.score-card {
+  animation: cardGlow 2s infinite alternate;
+}
+
+/* Animations */
+@keyframes titleGlow {
+  0% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff; }
+  50% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff; }
+  100% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff; }
+}
+
+@keyframes resultPulse {
+  0% { color: #0ff; text-shadow: 0 0 5px #0ff, 0 0 15px #0ff; }
+  50% { color: #6ef; text-shadow: 0 0 15px #0ff, 0 0 25px #0ff; }
+  100% { color: #0ff; text-shadow: 0 0 5px #0ff, 0 0 15px #0ff; }
+}
+
+@keyframes cardGlow {
+  0% { box-shadow: 0 0 15px #0ff, 0 0 30px #0ff inset; }
+  50% { box-shadow: 0 0 25px #0ff, 0 0 50px #0ff inset; }
+  100% { box-shadow: 0 0 15px #0ff, 0 0 30px #0ff inset; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .play-btns, .game-moves {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
