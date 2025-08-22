@@ -2,10 +2,14 @@ import Playbutton from "./playButton";
 import '../css/Home.css'
 import Result from "./result";
 import { useState } from 'react';
+import GameMoves from "./gameMoves";
 
 
 function Home() {
   const [gameResult, setGameResult] = useState(null);
+  const [gameMoves, setGameMoves] = useState({player : null, computer : null});
+
+  
 
   return (
     <>
@@ -15,22 +19,31 @@ function Home() {
         </div>
         <div className="play-btns">
           <Playbutton 
+            setGameMoves={setGameMoves}
             setGameResult={setGameResult}
             playerMove="rock" 
             image="/emoji/rock-emoji.png" 
           />
           <Playbutton
+            setGameMoves={setGameMoves}
             setGameResult={setGameResult}
             playerMove="paper" 
             image="/emoji/paper-emoji.png" 
           />
           <Playbutton
+            setGameMoves={setGameMoves}
             setGameResult={setGameResult} 
             playerMove="scissors" 
             image="/emoji/scissors-emoji.png" 
           />
         </div>
-        <Result result={gameResult}/>
+        <div className="result">
+          <Result result={gameResult}/>
+        </div>
+        <div className="game-moves">
+          <GameMoves gameMoves={gameMoves}/>
+        </div>
+
       </div>
       
     </>

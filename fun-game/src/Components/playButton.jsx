@@ -1,7 +1,7 @@
 import '../css/playButton.css'
 import Result from './result';
 
-function Playbutton({ image, playerMove, setGameResult }) {
+function Playbutton({ image, playerMove, setGameResult, setGameMoves }) {
 
   
   function getComputerMove() {
@@ -10,9 +10,7 @@ function Playbutton({ image, playerMove, setGameResult }) {
 
   }
 
-  function result(playerMove) {
-    const computerMove = getComputerMove();
-    console.log(computerMove);
+  function result(playerMove, computerMove) {
     if(computerMove === playerMove) {
       return "Tie";
     } else if(
@@ -25,8 +23,20 @@ function Playbutton({ image, playerMove, setGameResult }) {
     }
   }
 
+  function getComputerImage(move) {
+    if(move === 'rock') {
+      return '/emoji/rock-emoji.png'
+    } else if (move === 'paper') {
+      return '/emoji/paper-emoji.png'
+    } else {
+      return '/emoji/scissors-emoji.png'
+    }
+  }
+
   function generateResult() {
-    setGameResult(result(playerMove));
+    const computerMove = getComputerMove();
+    setGameResult(result(playerMove, computerMove));
+    setGameMoves({player : image, computer : getComputerImage(computerMove)});
   }
 
   return (
