@@ -1,7 +1,6 @@
 import '../css/playButton.css'
-import Result from './result';
 
-function Playbutton({ image, playerMove, setGameResult, setGameMoves }) {
+function Playbutton({ image, playerMove, setGameResult, setGameMoves, updateScore }) {
 
   
   function getComputerMove() {
@@ -35,8 +34,10 @@ function Playbutton({ image, playerMove, setGameResult, setGameMoves }) {
 
   function generateResult() {
     const computerMove = getComputerMove();
-    setGameResult(result(playerMove, computerMove));
+    const res = result(playerMove, computerMove);
+    setGameResult(res);
     setGameMoves({player : image, computer : getComputerImage(computerMove)});
+    updateScore(res);
   }
 
   return (

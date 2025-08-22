@@ -3,11 +3,23 @@ import '../css/Home.css'
 import Result from "./result";
 import { useState } from 'react';
 import GameMoves from "./gameMoves";
+import ScoreCard from "./scoreCard";
 
 
 function Home() {
   const [gameResult, setGameResult] = useState(null);
   const [gameMoves, setGameMoves] = useState({player : null, computer : null});
+  const [score, setScore] = useState({wins : 0, lose : 0, tie : 0});
+
+  const updateScore = (res) => {
+    setScore((prevScore) => {
+      const newScore = {...prevScore};
+      if(res === 'You lose') newScore.lose++;
+      else if(res === 'You win') newScore.wins++;
+      else newScore.tie++;
+      return newScore;
+    })
+  }
 
   
 
@@ -21,18 +33,21 @@ function Home() {
           <Playbutton 
             setGameMoves={setGameMoves}
             setGameResult={setGameResult}
+            updateScore={updateScore}
             playerMove="rock" 
             image="/emoji/rock-emoji.png" 
           />
           <Playbutton
             setGameMoves={setGameMoves}
             setGameResult={setGameResult}
+            updateScore={updateScore}
             playerMove="paper" 
             image="/emoji/paper-emoji.png" 
           />
           <Playbutton
             setGameMoves={setGameMoves}
             setGameResult={setGameResult} 
+            updateScore={updateScore}
             playerMove="scissors" 
             image="/emoji/scissors-emoji.png" 
           />
@@ -42,6 +57,9 @@ function Home() {
         </div>
         <div className="game-moves">
           <GameMoves gameMoves={gameMoves}/>
+        </div>
+        <div className="score-card">
+          <ScoreCard score={score} />
         </div>
 
       </div>
