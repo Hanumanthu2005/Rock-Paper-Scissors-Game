@@ -34,8 +34,8 @@ function Playbutton({ image, playerMove, setGameResult }) {
       <button onClick={generateResult} className="play-btn">
         <img src={image} alt="" className="btn-emoji" />
       </button>
-      {/* {gameResult && <Result result = {gameResult} />} */}
-    </>)
+    </>
+  )
 }
 
 export default Playbutton;
